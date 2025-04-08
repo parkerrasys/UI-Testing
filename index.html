@@ -126,7 +126,41 @@
       <div class="main-area">
         <div class="main-area-left">
           <div class="current-path-panel">
-
+            <div class="container">
+              <h1>Screen Dimensions</h1>
+              
+              <div class="dimensions">
+                  <span class="label">Screen Width:</span> 
+                  <span id="screenWidth"></span>px
+              </div>
+              
+              <div class="dimensions">
+                  <span class="label">Screen Height:</span> 
+                  <span id="screenHeight"></span>px
+              </div>
+              
+              <div class="dimensions">
+                  <span class="label">Available Width:</span> 
+                  <span id="availWidth"></span>px
+              </div>
+              
+              <div class="dimensions">
+                  <span class="label">Available Height:</span> 
+                  <span id="availHeight"></span>px
+              </div>
+              
+              <div class="dimensions">
+                  <span class="label">Window Inner Width:</span> 
+                  <span id="innerWidth"></span>px
+              </div>
+              
+              <div class="dimensions">
+                  <span class="label">Window Inner Height:</span> 
+                  <span id="innerHeight"></span>px
+              </div>
+              
+              <p class="update-info">Dimensions will update automatically if you resize the window.</p>
+          </div>
           </div>
         </div>
         <div class="main-area-middle">
@@ -161,7 +195,21 @@
   <script src="script.js"></script>
   <script>
 
+        // Function to update the screen dimensions
+        function updateDimensions() {
+            document.getElementById('screenWidth').textContent = window.screen.width;
+            document.getElementById('screenHeight').textContent = window.screen.height;
+            document.getElementById('availWidth').textContent = window.screen.availWidth;
+            document.getElementById('availHeight').textContent = window.screen.availHeight;
+            document.getElementById('innerWidth').textContent = window.innerWidth;
+            document.getElementById('innerHeight').textContent = window.innerHeight;
+        }
 
+        // Update dimensions when the page loads
+        updateDimensions();
+
+        // Update dimensions when the window is resized
+        window.addEventListener('resize', updateDimensions);
 
 
 
