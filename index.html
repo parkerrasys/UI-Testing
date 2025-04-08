@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoGrid Planner - Team 785Z</title>
+  <link rel="icon" type="image/x-icon" href="AutoGridLogo.ico">
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/bars.css">
+  <link rel="stylesheet" href="styles/buttons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-title">
+        <img class ="autogridlogo" id="logo" src="AutoGridLogoIntro.gif" alt="AutoGridLogo">
+        <div class="title">AutoGrid Planner <span class="team-name">by team 785Z</span>
+          <div class="dropdown">
+            <a href="#" class="version-tag"><i class="fas fa-code-branch"></i> v0.1.2</a>
+            <div class="dropdown-content">
+              <a href="https://github.com/parkerrasys/AutoGrid-Planner" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+              <a href="https://github.com/parkerrasys/AutoGrid-Planner/releases" target="_blank"><i class="fas fa-tags"></i> Release Notes</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="github-link"><i class="fab fa-github"></i> AutoGrid</a>
+            <div class="dropdown-content">
+              <a href="https://github.com/parkerrasys/AutoGrid" target="_blank"><i class="fas fa-code"></i> Source Code</a>
+              <a href="https://github.com/parkerrasys/AutoGrid-Planner/issues" target="_blank"><i class="fas fa-bug"></i> Bug Report</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="doc-tag"><i class="fas fa-book"></i> Links</a>
+            <div class="dropdown-content">
+              <a href="docs/home.html"><i class="fas fa-file-alt"></i> Documentation</a>
+              <a href="tutorials/home.html"><i class="fas fa-graduation-cap"></i> Tutorials</a>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <div class="project-title">
+        Name:<span id="pathName" class="path-name" onclick="editPathName()" title="Click to edit">Untitled</span>
+        <div class="recent-paths-container">
+          <i class="fas fa-history"></i> Recent Paths: <select id="recentPaths" onchange="loadRecentPath(this.value)">
+            <option value="">Recent Paths</option>
+          </select>
+          <button class="delete-recent" onclick="deleteSelectedPath()"><i class="fas fa-trash-alt"></i> Delete</button>
+        </div>
+      </div>
+      <div class="header-buttons">
+        <button onclick="clearPath()"><i class="fas fa-plus"></i> New Path</button>
+        <button onclick="importPath()"><i class="fas fa-file-import"></i> Import Path</button>
+        <button onclick="importSharePath()"><i class="fas fa-share-alt"></i> Import Share Path</button>
+        <select id="themeSelector" onchange="changeTheme(this.value)">
+          <option value="dark">Default Dark</option>
+          <option value="light">Default Light</option>
+          <option value="midnight">Midnight Dream</option>
+          <option value="ocean">Ocean Breeze</option>
+          <option value="forest">Forest Mist</option>
+          <option value="sunset">Too Much Purple</option>
+          <option value="retro">Retro Wave</option>
+          <option value="nord">Classic Grey</option>
+          <option value="mocha">Midnight Purple</option>
+          <option value="cyber">Cyber Punk</option>
+          <option value="devpref">Dev's Preference</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <div class="left-sidebar">
+        <button class="action-button" onclick="clearPath()">
+          <i class="fas fa-plus"></i>
+          <span class="hover-text">New Path</span>
+        </button>
+        <button class="action-button" onclick="importPath()">
+          <i class="fas fa-file-import"></i>
+          <span class="hover-text">Import Path</span>
+        </button>
+        <button class="action-button" onclick="importSharePath()">
+          <i class="fas fa-share-alt"></i>
+          <span class="hover-text">Import Share Code</span>
+        </button>
+      </div>
+      <main-area>
+        Testing Box
+      </main-area>
+    </main>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    const delay = 1250;
+    const preloadImage = new Image();
+
+    preloadImage.src = "AutoGridAnimationLoop.gif";
+
+    const logoElement = document.getElementById("logo");
+
+    setTimeout(() => {
+      logoElement.src = preloadImage.src;
+    }, delay);
+
+
+
+
+    const inputs = document.querySelectorAll('input[type="number"]');
+   //Scrolling for numbers (in here for editing/adjusting) 
+inputs.forEach((input) => {
+    input.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const step = parseFloat(input.step) || 1;
+        let currentValue = parseFloat(input.value) || 0;
+
+        if (event.deltaY < 0) {
+            input.value = Math.min(currentValue + step, parseFloat(input.max) || Infinity);
+        } else {
+            input.value = Math.max(currentValue - step, parseFloat(input.min) || -Infinity);
+        }
+        input.dispatchEvent(new Event('change'));
+    });
+});
+
+
+ // Get screen width and height
+ const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        // Display screen size in the text box
+        const textBox = document.getElementById("screenSize");
+        textBox.value = `Width: ${screenWidth}px, Height: ${screenHeight}px`;
+
+
+        document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+  return false;
+}, true);
+  </script>
+</body>
+
+</html>
