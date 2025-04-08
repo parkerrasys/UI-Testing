@@ -1,3 +1,22 @@
+/* Default Button Style */
+button {
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #3498db;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+
 .action-button {
   aspect-ratio: 1 / 1;
   width: auto;
@@ -67,68 +86,145 @@
     border-color: #9fc3f1;
   }
 }
+ 
 
 
+.theme-container {
+  position: relative;
+  display: inline-block;
+}
 
+.theme-button {
+  aspect-ratio: 1 / 1;
+  width: auto;
+  height: auto;
+  border: 3px solid #9fc3f1;
+  border-radius: 100%;
+  background: #519cce;
+  position: relative;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
 
+.theme-button:hover {
+  background: #5a92e6;
+}
 
+.theme-button::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 100%;
+  border: 3px solid transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
 
-/* Default Button Style */
+.theme-button:hover::after {
+  opacity: 1;
+  animation: borderGlow 1.5s infinite;
+}
 
+.hover-bridge {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  width: 10px;
+  z-index: 5;
+}
 
+.theme-options {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 0;
+  height: 100%;
+  background-color: #519cce;
+  border-radius: 20px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  z-index: 5;
+}
 
+.theme-container:hover .theme-options,
+.theme-container:hover .hover-bridge {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition-delay: 0s;
+}
 
+.theme-container .theme-options,
+.theme-container .hover-bridge {
+  transition-delay: 0.1s;
+}
 
-button {
-    padding: 8px 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #3498db;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
+.theme-option {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid #9fc3f1;
+  display: inline-block;
+
+}
+
+.theme-option:last-child {
+  margin-right: 0;
+}
+
+.theme-option:hover {
+  transform: scale(1.1);
+}
+
+.theme-option-blue {
+  background: #4d96fc;
+}
+
+.theme-option-dark {
+  background: #333;
+}
+
+.theme-option-green {
+  background: #4dfc96;
+}
+
+.theme-option-purple {
+  background: #964dfc;
+}
+
+.theme-option-red {
+  background: #fc4d4d;
+}
+
+.theme-option-customize {
+  background: #5f5d5d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes borderGlow {
+  0% {
+    border-color: #9fc3f1;
   }
-  
-  button:hover {
-    background: #2980b9;
+  50% {
+    border-color: #4d96fc;
   }
-
-  /* Clear Button Style */
-  .clear-button {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    display: inline-flex; /* Added for icon placement */
-    align-items: center; /* Added for icon placement */
-    gap: 8px; /* Added for icon spacing */
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 0 5px;
+  100% {
+    border-color: #9fc3f1;
   }
-  
-  .clear-button:hover {
-    background: #c0392b;
-  }
-
-   /* Delete Path Button Style */
-  .delete-recent {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 4px 8px;
-    display: inline-flex; /* Added for icon placement */
-    align-items: center; /* Added for icon placement */
-    gap: 4px; /* Added for icon spacing */
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  .delete-recent:hover {
-    background: #c0392b;
-  }
+}
+ 

@@ -1,0 +1,20 @@
+#themeSelector,
+#fieldSelector,
+#gameSelector,
+#allianceSelector,
+#pathTypeSelector {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#themeSelector:hover,
+#fieldSelector:hover,
+#gameSelector:hover,
+#allianceSelector:hover,
+#pathTypeSelector:hover {
+  background: var(--bg-secondary);
+}

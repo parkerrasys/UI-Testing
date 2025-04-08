@@ -3,13 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
   <title>AutoGrid Planner - Team 785Z</title>
   <link rel="icon" type="image/x-icon" href="AutoGridLogo.ico">
   <link rel="stylesheet" href="styles/theme.css">
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/bars.css">
   <link rel="stylesheet" href="styles/buttons.css">
+  <link rel="stylesheet" href="styles/tags.css">
+  <link rel="stylesheet" href="styles/dropdowns.css">
+  <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -42,19 +45,10 @@
           </div> 
         </div>
       </div>
-      <div class="project-title">
-        Name:<span id="pathName" class="path-name" onclick="editPathName()" title="Click to edit">Untitled</span>
-        <div class="recent-paths-container">
-          <i class="fas fa-history"></i> Recent Paths: <select id="recentPaths" onchange="loadRecentPath(this.value)">
-            <option value="">Recent Paths</option>
-          </select>
-          <button class="delete-recent" onclick="deleteSelectedPath()"><i class="fas fa-trash-alt"></i> Delete</button>
-        </div>
-      </div>
       <div class="header-buttons">
-        <button onclick="clearPath()"><i class="fas fa-plus"></i> New Path</button>
+        <!-- <button onclick="clearPath()"><i class="fas fa-plus"></i> New Path</button>
         <button onclick="importPath()"><i class="fas fa-file-import"></i> Import Path</button>
-        <button onclick="importSharePath()"><i class="fas fa-share-alt"></i> Import Share Path</button>
+        <button onclick="importSharePath()"><i class="fas fa-share-alt"></i> Import Share Path</button> -->
         <select id="themeSelector" onchange="changeTheme(this.value)">
           <option value="dark">Default Dark</option>
           <option value="light">Default Light</option>
@@ -72,26 +66,110 @@
     </header>
     <main>
       <div class="left-sidebar">
-        <button class="action-button" onclick="clearPath()">
-          <i class="fas fa-plus"></i>
-          <span class="hover-text">New Path</span>
-        </button>
-        <button class="action-button" onclick="importPath()">
-          <i class="fas fa-file-import"></i>
-          <span class="hover-text">Import Path</span>
-        </button>
-        <button class="action-button" onclick="importSharePath()">
-          <i class="fas fa-share-alt"></i>
-          <span class="hover-text">Import Share Code</span>
-        </button>
+        <div class="left-sidebar-button-group">
+          <button class="action-button" onclick="clearPath()">
+            <i class="fas fa-plus"></i>
+            <span class="hover-text">New Path</span>
+          </button>
+          <button class="action-button" onclick="importPath()">
+            <i class="fas fa-file-import"></i>
+            <span class="hover-text">Import Path</span>
+          </button>
+          <button class="action-button" onclick="importSharePath()">
+            <i class="fas fa-share-alt"></i>
+            <span class="hover-text">Import Share Code</span>
+          </button>
+        </div>
+
+        <div class="left-sidebar-divider"></div>
+
+        <div class="left-sidebar-button-group">
+          <button class="action-button" onclick="exportPath()">
+            <i class="fas fa-file-export"></i>
+            <span class="hover-text">Export</span>
+          </button>
+          <button class="action-button" onclick="sharePaths()">
+            <i class="fas fa-share"></i>
+            <span class="hover-text">Share Paths</span>
+          </button>
+          <button class="action-button" onclick="buildPath()">
+            <i class="fas fa-hammer"></i>
+            <span class="hover-text">Build Code</span>
+          </button>
+        </div>
+
+        <div class="left-sidebar-divider"></div>
+
+        <div class="left-sidebar-button-group">
+          <div class="theme-container" id="theme-container">
+            <button class="theme-button" onclick="exportPath()">
+              <i class="fas fa-palette"></i>
+            </button>
+            <div class="hover-bridge"></div>
+            <div class="theme-options" id="theme-options">
+              <div class="theme-option theme-option-blue" onclick="changeTheme('blue')"></div>
+              <div class="theme-option theme-option-dark" onclick="changeTheme('dark')"></div>
+              <div class="theme-option theme-option-green" onclick="changeTheme('green')"></div>
+              <div class="theme-option theme-option-purple" onclick="changeTheme('purple')"></div>
+              <div class="theme-option theme-option-red" onclick="changeTheme('red')"></div>
+              <div class="theme-option theme-option-customize" onclick="customizeThemes()">
+                <i class="fas fa-paint-brush"></i>
+              </div>
+            </div>
+          </div>
+          <button class="action-button" onclick="sharePaths()">
+            <i class="fas fa-cog"></i>
+            <span class="hover-text">Settings</span>
+          </button>
+        </div>
       </div>
-      <main-area>
-        Testing Box
-      </main-area>
+      <div class="main-area">
+        <div class="main-area-left">
+          <div class="current-path-panel">
+
+          </div>
+        </div>
+        <div class="main-area-middle">
+          <div class="main-area-top">
+            <div class="path-information">
+              <div class="project-title">
+                Name:<span id="pathName" class="path-name" onclick="editPathName()" title="Click to edit">Untitled</span>
+                <div class="recent-paths-container">
+                    Recent Paths: <select id="recentPaths" onchange="loadRecentPath(this.value)">
+                    <option value="">Recent Paths</option>
+                  </select>
+                  <button class="delete-recent" onclick="deleteSelectedPath()"><i class="fas fa-trash-alt"></i> Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="main-area-body">
+            <canvas id="grid"></canvas>
+          </div>
+        </div>
+        <div class="main-area-right">
+          <div class="tbd-right-panel">
+            
+          </div>
+        </div>
+        <div class="path-info-area">
+
+        </div>
+      </div>
     </main>
   </div>
   <script src="script.js"></script>
   <script>
+
+
+
+
+
+
+
+
+
+
     const delay = 1250;
     const preloadImage = new Image();
 
@@ -124,13 +202,7 @@ inputs.forEach((input) => {
 });
 
 
- // Get screen width and height
- const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
 
-        // Display screen size in the text box
-        const textBox = document.getElementById("screenSize");
-        textBox.value = `Width: ${screenWidth}px, Height: ${screenHeight}px`;
 
 
         document.addEventListener('contextmenu', function(event) {

@@ -1,0 +1,52 @@
+header {
+    background: var(--bg-secondary);
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: center;
+    flex-wrap: wrap;
+    padding-left: 27px;
+    padding-right: 10px;
+}
+
+/* Organizers */
+.logo-title {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+}
+
+.project-title {
+  font-size: 1rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.team-name {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.autogridlogo {
+  width: 3.125rem;
+  height: 3.125rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}

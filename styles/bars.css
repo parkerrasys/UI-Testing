@@ -1,95 +1,26 @@
-header {
+.left-sidebar {
+  width: 100px;
+  min-width: 100px; /* Prevents shrinking */
+  max-width: 100px; /* Prevents expanding */
   background: var(--bg-secondary);
-  height: 10%;
-  padding: 0.75rem 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-  vertical-align: center;
-  
-  /* border-bottom: 1px solid var(--border-color); */
-  flex-wrap: wrap;
+  gap: 25px;
 }
 
-.left-sidebar {
-    width: 5%;
-    padding-left: .5%;
-    padding-right: .5%;
-    background: var(--bg-secondary);
-    display: flex;
-    flex-direction: column;
-    border-top: none;
-    /* border-right: 1px solid var(--border-color); */
-    align-items: center;
-    gap: 1%;
-    padding-top: 1%;
-  }
+.left-sidebar-divider {
+  height: 5px;
+  background-color: var(--border-color);
+  width: 75%;
+  opacity: 0.7;
+  border-radius: 10px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  .right-sidebar {
-    width: auto;
-    padding-left: .5%;
-    padding-right: .5%;
-    background: var(--bg-secondary);
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid var(--border-color);
-    align-items: center;
-  }
-
-  .top-bar {
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
-    border-radius: 0px 0px 10px 10px;
-  }
-  
-  .bottom-bar {
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
-    border-radius: 10px 10px 0px 0px;
-  }
-  
-  .left-bar {
-    padding: 15px;
-    gap: 10px;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
-    border-radius: 10px 0px 0px 10px;
-  }
-  
-  .right-bar {
-    padding: 15px;
-    gap: 10px;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
-    border-radius: 0px 10px 10px 0px;
-  }
+.left-sidebar-button-group {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
