@@ -46,6 +46,9 @@
         </div>
       </div>
       <div class="header-buttons">
+        <button id="fullscreenButton" class="action-button">
+          <span class="hover-text">FullScreen</span>
+        </button>
         <!-- <button onclick="clearPath()"><i class="fas fa-plus"></i> New Path</button>
         <button onclick="importPath()"><i class="fas fa-file-import"></i> Import Path</button>
         <button onclick="importSharePath()"><i class="fas fa-share-alt"></i> Import Share Path</button> -->
@@ -67,6 +70,10 @@
     <main>
       <div class="left-sidebar">
         <div class="left-sidebar-button-group">
+          <button class="action-button" onclick="buildPath()">
+            <i class="fas fa-hammer"></i>
+            <span class="hover-text">Build Code</span>
+          </button>
           <button class="action-button" onclick="clearPath()">
             <i class="fas fa-plus"></i>
             <span class="hover-text">New Path</span>
@@ -91,10 +98,6 @@
           <button class="action-button" onclick="sharePaths()">
             <i class="fas fa-share"></i>
             <span class="hover-text">Share Paths</span>
-          </button>
-          <button class="action-button" onclick="buildPath()">
-            <i class="fas fa-hammer"></i>
-            <span class="hover-text">Build Code</span>
           </button>
         </div>
 
@@ -247,6 +250,43 @@ inputs.forEach((input) => {
         }
         input.dispatchEvent(new Event('change'));
     });
+});
+
+
+
+// Function to toggle fullscreen mode
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    // If not in fullscreen mode, request fullscreen
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+      document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+      document.documentElement.msRequestFullscreen();
+    }
+  } else {
+    // If already in fullscreen mode, exit fullscreen
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+}
+
+// Add event listener to button with id "fullscreenButton"
+document.addEventListener('DOMContentLoaded', function() {
+  const fullscreenButton = document.getElementById('fullscreenButton');
+  if (fullscreenButton) {
+    fullscreenButton.addEventListener('click', toggleFullscreen);
+  }
 });
 
 
